@@ -34,5 +34,47 @@ btnContainer.addEventListener("click", (e) => {
     input2.innerText += input.innerText + "÷";
     input.innerText = "";
     num1 = Number(input.innerText);
+    operator = "division";
+    num1Done = true;
+  } else if (e.target.id == "multi" && !num1Done && input.innerText) {
+    input2.innerText += input.innerText + "x";
+    input.innerText = "";
+    num1 = Number(input.innerText);
+    operator = "multi";
+    num1Done = true;
+  } else if (e.target.id == "sub" && !num1Done && input.innerText) {
+    input2.innerText += input.innerText + "-";
+    input.innerText = "";
+    num1 = Number(input.innerText);
+    operator = "sub";
+    num1Done = true;
+  } else if (e.target.id == "add" && !num1Done && input.innerText) {
+    input2.innerText += input.innerText + "+";
+    input.innerText = "";
+    num1 = Number(input.innerText);
+    operator = "add";
+    num1Done = true;
+  } else if (e.target.id == "dec" && !floating) {
+    input.innerText += ".";
+  } else if (e.target.id == "equal" && num1Done && input.innerText) {
+    num2 = Number(input.innerText);
+    num1Done = false;
+    input2.innerText = "";
+    switch (operator) {
+      case "division":
+        input.innerText = num1 / num2;
+        break;
+      case "add":
+        input.innerText = num1 + num2;
+        break;
+      case "sub":
+        input.innerText = num1 - num2;
+        break;
+      case "multi":
+        input.innerText = num1 * num2;
+        break;
+    }
+  } else if (e.target.id == "per" && input.innerText) {
+    input.innerText = Number(input.innerText) / 100;
   }
 });
